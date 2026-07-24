@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import DocsApp from '../documentation/src/App';
 import PlaygroundApp from '../playground/src/App';
 
@@ -19,8 +20,18 @@ export default function App() {
   }, []);
 
   if (isPlayground) {
-    return <PlaygroundApp />;
+    return (
+      <>
+        <PlaygroundApp />
+        <Analytics />
+      </>
+    );
   }
 
-  return <DocsApp />;
+  return (
+    <>
+      <DocsApp />
+      <Analytics />
+    </>
+  );
 }
