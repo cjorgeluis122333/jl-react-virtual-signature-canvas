@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="btnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <style>
+      @keyframes drawSignature {
+        0% { stroke-dashoffset: 1200; opacity: 0; }
+        15% { opacity: 1; }
+        70% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 0; opacity: 1; }
+      }
+      @keyframes dotPulse {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.4); opacity: 1; }
+      }
+      .signature-path {
+        stroke-dasharray: 1200;
+        stroke-dashoffset: 1200;
+        animation: drawSignature 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+      }
+      .active-dot {
+        animation: dotPulse 1.5s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+
+  <!-- Outer Dark Slate Container -->
+  <rect width="800" height="400" rx="16" fill="url(#bgGrad)"/>
+  
+  <!-- Header Title -->
+  <text x="400" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">
+    jl-react-virtual-signature-canvas
+  </text>
+  <text x="400" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#94a3b8" text-anchor="middle">
+    Interactive Live Preview • Touch Support • Smooth Curves • Auto Crop
+  </text>
+
+  <!-- Main Card Container -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="90" width="680" height="260" rx="16" fill="url(#cardGrad)" stroke="#cbd5e1" stroke-width="1"/>
+    
+    <!-- Canvas Frame Inner -->
+    <rect x="80" y="110" width="640" height="170" rx="12" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6 6"/>
+    
+    <!-- Dotted Helper Line inside Canvas -->
+    <line x1="110" y1="225" x2="690" y2="225" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <text x="680" y="220" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8" text-anchor="end">Sign on line</text>
+    <circle cx="100" cy="225" r="3" fill="#6366f1" class="active-dot"/>
+
+    <!-- Simulated Smooth Signature Stroke -->
+    <path class="signature-path" d="M 140 210 C 160 140, 180 130, 200 215 C 215 270, 230 150, 250 180 C 270 210, 310 200, 340 170 C 370 140, 390 220, 420 185 C 450 150, 480 210, 520 175 C 550 150, 580 200, 620 160 Q 640 140 660 180" fill="none" stroke="#1e1b4b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Bottom Control Bar -->
+    <g transform="translate(80, 298)">
+      <!-- Undo Button -->
+      <rect x="0" y="0" width="90" height="36" rx="8" fill="#e2e8f0"/>
+      <text x="45" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">↺ Undo</text>
+
+      <!-- Clear Button -->
+      <rect x="100" y="0" width="90" height="36" rx="8" fill="#fef2f2" stroke="#fecaca" stroke-width="1"/>
+      <text x="145" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#ef4444" text-anchor="middle">🗑 Clear</text>
+
+      <!-- Indicator Tag -->
+      <rect x="205" y="4" width="160" height="28" rx="14" fill="#e0e7ff"/>
+      <text x="285" y="22" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#4338ca" text-anchor="middle">✨ Auto-Crop Enabled</text>
+
+      <!-- Save Button -->
+      <rect x="510" y="0" width="130" height="36" rx="8" fill="url(#btnGrad)"/>
+      <text x="575" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Save Signature →</text>
+    </g>
+  </g>
+
+  <!-- Live Link Footer -->
+  <text x="400" y="375" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#818cf8" text-anchor="middle">
+    🌐 Full Interactive Documentation: https://jl-react-virtual-signature-canvas.vercel.app/
+  </text>
+</svg>

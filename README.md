@@ -2,10 +2,22 @@
 
 [![npm version](https://badge.fury.io/js/jl-react-virtual-signature-canvas.svg)](https://badge.fury.io/js/jl-react-virtual-signature-canvas)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Documentation](https://img.shields.io/badge/Documentation-Live%20Docs-4f46e5.svg)](https://jl-react-virtual-signature-canvas.vercel.app/)
+[![Bilingual Docs](https://img.shields.io/badge/Docs%20Languages-English%20%7C%20Espa%C3%B1ol-6366f1.svg)](https://jl-react-virtual-signature-canvas.vercel.app/)
 
-**A modern, lightweight, and responsive electronic signature component for React applications.**
+**A modern, lightweight, and responsive electronic signature component for React & TypeScript applications.**
 
-This repository is organized as a monorepo containing the main `jl-react-virtual-signature-canvas` library, an interactive documentation web application, and a real-time playground for testing signature configurations.
+---
+
+### 🌐 Live Links & Interactive Demo
+- 📚 **Official Interactive Documentation (ES / EN)**: [https://jl-react-virtual-signature-canvas.vercel.app/](https://jl-react-virtual-signature-canvas.vercel.app/)
+- 🎮 **Live Interactive Playground**: [https://jl-react-virtual-signature-canvas.vercel.app/?mode=playground](https://jl-react-virtual-signature-canvas.vercel.app/?mode=playground)
+
+---
+
+### 🖼️ Component Visual Preview
+
+![jl-react-virtual-signature-canvas Preview](https://jl-react-virtual-signature-canvas.vercel.app/preview.svg)
 
 ---
 
@@ -23,7 +35,7 @@ jl-react-virtual-signature-canvas/
 | Directory | Description |
 | :--- | :--- |
 | **`library/`** | The published npm package source code (`jl-react-virtual-signature-canvas`). |
-| **`documentation/`** | Full documentation app featuring live interactive examples, API guides, and language selection. |
+| **`documentation/`** | Full documentation app featuring live interactive examples, API guides, and language selection (English / Spanish). |
 | **`playground/`** | A sandbox environment to test pen color, stroke width, stabilization, and exports in real time. |
 
 ---
@@ -36,6 +48,8 @@ To use `jl-react-virtual-signature-canvas` in your own React project, install it
 npm install jl-react-virtual-signature-canvas
 # or
 yarn add jl-react-virtual-signature-canvas
+# or
+pnpm add jl-react-virtual-signature-canvas
 ```
 
 ### Basic Example
@@ -56,7 +70,7 @@ export default function SignatureComponent() {
       alert("Please provide a signature first!");
       return;
     }
-    // Returns cropped Base64 image PNG
+    // Returns cropped Base64 PNG image
     const dataUrl = signatureRef.current?.toDataURL('image/png');
     console.log("Signature PNG Data:", dataUrl);
   };
@@ -83,29 +97,7 @@ export default function SignatureComponent() {
 }
 ```
 
-For complete API documentation, props, and advanced methods, refer to [`library/README.md`](./library/README.md) or open the interactive documentation app.
-
----
-
-## 🛠️ Local Development & Monorepo Setup
-
-If you want to contribute to the package or run the documentation/playground locally:
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/cjorgeluis122333/jl-react-virtual-signature-canvas.git
-   cd jl-react-virtual-signature-canvas
-   ```
-
-2. **Install workspace dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Start the local dev server:**
-   ```bash
-   npm run dev
-   ```
+For complete API documentation, props, and advanced methods, refer to [`library/README.md`](./library/README.md) or open the [interactive documentation app](https://jl-react-virtual-signature-canvas.vercel.app/).
 
 ---
 
@@ -117,9 +109,11 @@ If you want to contribute to the package or run the documentation/playground loc
 - ✂️ **Auto-Cropping**: Automatically trims whitespace margins on `toDataURL` export.
 - ⏪ **Undo & Clear History**: Imperative methods (`clear()`, `undo()`, `isEmpty()`) accessible via React refs.
 - 🛡️ **TypeScript Support**: Written natively in TypeScript with exported interfaces.
+- 🌍 **Bilingual Documentation**: Support for English and Spanish in the interactive documentation web app.
 
 ---
 
 ## 📄 License
 
-[MIT](./library/README.md#license) © [jlcpabonisquierdo](https://github.com/cjorgeluis122333)
+[MIT](./library/README.md#license) © [cjorgeluis122333](https://github.com/cjorgeluis122333)
+
