@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
+    "build": "tsc -p library && vite build",
+    "build:lib": "tsc -p library",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
@@ -44,6 +45,7 @@
   },
   "overrides": {
     "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4"
+    "@types/react-dom": "^19.0.4",
+    "node-domexception": "file:deps/node-domexception"
   }
 }
