@@ -3,6 +3,8 @@ export const en = {
   nav: {
     brandTitle: 'Virtual Signature',
     brandSubtitle: 'Documentation',
+    playgroundBtn: 'Try Playground 🚀',
+    playgroundDesc: 'Interactive real-time sandbox environment',
     startGuide: 'Start Guide',
     getStarted: 'Get Started',
     getStartedDesc: 'Installation guide and basic configuration',

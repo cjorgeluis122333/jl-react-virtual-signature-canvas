@@ -25,6 +25,11 @@ function DocumentationAppContent() {
   const [currentSection, setCurrentSection] = useState<DocSection>('get-started');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const handleGoToPlayground = () => {
+    window.history.pushState({}, '', '?mode=playground');
+    window.dispatchEvent(new Event('popstate'));
+  };
+
   const navGroups: NavigationGroup[] = [
     {
       sectionTitle: t.nav.startGuide,
@@ -89,6 +94,17 @@ function DocumentationAppContent() {
             <h1 className="font-bold text-slate-900 leading-tight tracking-tight">{t.nav.brandTitle}</h1>
             <span className="text-[10px] text-indigo-600 font-semibold uppercase tracking-wider">{t.nav.brandSubtitle}</span>
           </div>
+        </div>
+
+        {/* Playground Featured Button */}
+        <div className="p-4 border-b border-slate-100">
+          <button
+            onClick={handleGoToPlayground}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold text-xs shadow-md shadow-indigo-100 hover:shadow-indigo-200 transition-all active:scale-[0.98]"
+          >
+            <Sparkles className="w-4 h-4 text-indigo-200 animate-pulse" />
+            <span>{t.nav.playgroundBtn}</span>
+          </button>
         </div>
 
         {/* Navigation Groups */}
@@ -169,13 +185,22 @@ function DocumentationAppContent() {
             <span className="text-[9px] text-indigo-600 font-semibold uppercase tracking-wider block">Doc</span>
           </div>
         </div>
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors focus:outline-none"
-          aria-label="Abrir menú"
-        >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleGoToPlayground}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-sm transition-colors"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Playground</span>
+          </button>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors focus:outline-none"
+            aria-label="Abrir menú"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* MOBILE DRAWER / MENU OVERLAY */}
@@ -193,6 +218,20 @@ function DocumentationAppContent() {
                 <h1 className="font-bold text-slate-900 leading-tight">{t.nav.brandTitle}</h1>
                 <span className="text-[10px] text-indigo-600 font-semibold uppercase tracking-wider">{t.nav.brandSubtitle}</span>
               </div>
+            </div>
+
+            {/* Mobile Playground Button */}
+            <div className="p-4 border-b border-slate-100">
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  handleGoToPlayground();
+                }}
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold text-xs shadow-md shadow-indigo-100"
+              >
+                <Sparkles className="w-4 h-4 text-indigo-200" />
+                <span>{t.nav.playgroundBtn}</span>
+              </button>
             </div>
 
             {/* Mobile Navigation Groups */}

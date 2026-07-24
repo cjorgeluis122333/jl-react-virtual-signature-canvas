@@ -13,7 +13,8 @@ import {
   Sparkles,
   Sliders,
   CheckCircle2,
-  ListRestart
+  ListRestart,
+  BookOpen
 } from 'lucide-react';
 
 interface LogEntry {
@@ -81,7 +82,7 @@ export default function App() {
       
       if (dataUrl) {
         setPreviewUrl(dataUrl);
-        addLog('canvas.toDataURL()', `Firma exportada con éxito. Tamaño de la URL: ${Math.round(dataUrl.length / 1024)} KB.`);
+        addLog('canvas.toDataURL()', `Firma procesada con éxito. Tamaño de la URL: ${Math.round(dataUrl.length / 1024)} KB.`);
       }
     } catch (error: any) {
       if (error.name === 'EmptySignatureError') {
@@ -96,6 +97,40 @@ export default function App() {
         console.error(error);
         addLog('Error Desconocido', error.message || 'Error desconocido al exportar.');
       }
+    }
+  };
+
+  const handleDownload = () => {
+    let url = previewUrl;
+    if (!url) {
+      try {
+        setValidationError(null);
+        url = canvasRef.current?.toDataURL('image/png', undefined, throwIfEmpty) || null;
+        if (url) {
+          setPreviewUrl(url);
+        }
+      } catch (error: any) {
+        if (error.name === 'EmptySignatureError') {
+          setValidationError(error.message);
+          addLog('Error Capturado', `EmptySignatureError: ${error.message}`);
+          try {
+            alert(`Error capturado: ${error.message}`);
+          } catch (e) {
+            console.warn("El navegador bloqueó el alert()", e);
+          }
+          return;
+        }
+      }
+    }
+
+    if (url) {
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `signature-${Date.now()}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      addLog('Descarga Ejecutada', 'Se inició la descarga del archivo PNG de la firma.');
     }
   };
 
@@ -138,11 +173,17 @@ export default function App() {
           </div>
         </div>
         
-        <div className="flex items-center gap-3 text-xs bg-slate-900 border border-slate-800 px-4 py-2 rounded-lg">
-          <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 shrink-0 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          </span>
-          <span className="text-slate-300 font-medium font-mono">Status: Sandbox Activo</span>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => {
+              window.history.pushState({}, '', window.location.pathname);
+              window.dispatchEvent(new Event('popstate'));
+            }}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow border border-indigo-400/30 transition-all hover:scale-105"
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>Documentación</span>
+          </button>
         </div>
       </header>
 
@@ -450,10 +491,10 @@ export default function App() {
               <button
                 onClick={handleExport}
                 className="flex items-center gap-2 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-bold text-white shadow-lg shadow-indigo-500/10 hover:shadow-indigo-500/20 active:scale-95 transition-all"
-                title="Convertir el canvas actual en una imagen Data URL recortada o completa"
+                title="Procesar y generar la previsualización de la firma"
               >
-                <Download className="w-4 h-4" />
-                Procesar & Exportar Firma
+                <Eye className="w-4 h-4" />
+                Procesar & Previsualizar
               </button>
             </div>
 
@@ -464,9 +505,22 @@ export default function App() {
             
             {/* Live Export Preview */}
             <div className="bg-slate-950 rounded-2xl border border-slate-800 p-6 flex flex-col gap-4 shadow-xl">
-              <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
-                <Eye className="w-4.5 h-4.5 text-indigo-400" />
-                <h3 className="text-md font-bold text-white">Resultado Exportado</h3>
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div className="flex items-center gap-2">
+                  <Eye className="w-4.5 h-4.5 text-indigo-400" />
+                  <h3 className="text-md font-bold text-white">Resultado Exportado</h3>
+                </div>
+
+                {previewUrl && (
+                  <button
+                    onClick={handleDownload}
+                    className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold shadow-md shadow-emerald-950/30 transition-all active:scale-95"
+                    title="Descargar firma en formato PNG"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    Descargar PNG
+                  </button>
+                )}
               </div>
 
               {previewUrl ? (
@@ -491,15 +545,15 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="text-[11px] text-slate-400 leading-relaxed bg-slate-900/50 p-3 rounded-lg border border-slate-800">
-                    <span className="font-extrabold text-indigo-400">Tipo de salida:</span> Base64 Data URL (PNG 24 bits con transparencia). El modo <code className="bg-indigo-950 text-indigo-400 px-1 py-0.5 rounded font-mono font-bold">autoCrop</code> extrae de forma automática las dimensiones perfectas de la firma, eliminando espacios blancos no utilizados de las esquinas.
+                  <div className="text-[11px] text-slate-400 leading-relaxed bg-slate-900/50 p-3.5 rounded-xl border border-slate-800">
+                    <span className="font-extrabold text-indigo-400">Tipo de salida:</span> Base64 Data URL (PNG 24 bits con transparencia). El modo <code className="bg-indigo-950 text-indigo-400 px-1 py-0.5 rounded font-mono font-bold">autoCrop</code> recorta el fondo sobrante.
                   </div>
                 </div>
               ) : (
                 <div className="flex-1 min-h-[210px] flex flex-col items-center justify-center text-center p-6 border border-dashed border-slate-800 rounded-xl bg-slate-900/10">
-                  <Download className="w-8 h-8 text-slate-700 mb-3" />
+                  <Eye className="w-8 h-8 text-slate-700 mb-3" />
                   <p className="text-sm font-semibold text-slate-500">No hay vista previa</p>
-                  <p className="text-xs text-slate-600 max-w-xs mt-1">Dibuja una firma en el lienzo de arriba y haz clic en "Procesar & Exportar Firma".</p>
+                  <p className="text-xs text-slate-600 max-w-xs mt-1">Dibuja una firma en el lienzo de arriba y haz clic en "Procesar & Previsualizar".</p>
                 </div>
               )}
             </div>
