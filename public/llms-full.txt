@@ -1,0 +1,147 @@
+# jl-react-virtual-signature-canvas (Full API Reference & Developer Guide)
+
+This document contains the complete technical specifications, TypeScript interfaces, component props, ref methods, and integration patterns for `jl-react-virtual-signature-canvas`.
+
+Package Name: `jl-react-virtual-signature-canvas`
+Version: `1.0.0`
+License: MIT
+Repository: https://github.com/cjorgeluis122333/jl-react-virtual-signature-canvas
+Live Documentation: https://jl-react-virtual-signature-canvas.vercel.app/
+Playground: https://jl-react-virtual-signature-canvas.vercel.app/?mode=playground
+
+---
+
+## 1. Component Props (`SignatureCanvasProps`)
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `width` | `number \| string` | `'100%'` | Canvas container width. Accepts pixel numbers (e.g., `500`) or string percentages (e.g., `'100%'`). |
+| `height` | `number \| string` | `'100%'` | Canvas container height. Accepts pixel numbers (e.g., `250`) or string percentages (e.g., `'100%'`). |
+| `strokeColor` | `string` | `'#000000'` | Pen stroke color. Accepts any CSS color (hex, rgb, rgba, hsl). |
+| `strokeWidth` | `number` | `3` | Width of pen stroke in pixels. |
+| `stabilization` | `boolean` | `true` | Enables intelligent curve smoothing for clean drawing. |
+| `autoCrop` | `boolean` | `false` | If set to `true`, `toDataURL` will automatically trim empty white space margins around the signature. |
+| `style` | `React.CSSProperties` | `{...}` | CSS inline styles applied to the outer wrapper `div`. |
+| `className` | `string` | `''` | Class names for outer wrapper (e.g. Tailwind classes). |
+| `canvasStyle` | `React.CSSProperties` | `undefined` | CSS inline styles applied directly to the HTML `<canvas>` element. |
+| `canvasClassName` | `string` | `''` | Class names applied directly to the HTML `<canvas>` element. |
+| `onDrawStart` | `() => void` | `undefined` | Callback fired when user begins drawing stroke. |
+| `onDrawEnd` | `() => void` | `undefined` | Callback fired when user completes drawing stroke. |
+| `onUndoStateChange` | `(canUndo: boolean) => void` | `undefined` | Callback triggered when history changes, passing `true` if strokes can be undone. |
+
+---
+
+## 2. Ref Methods (`SignatureCanvasRef`)
+
+When passing a `ref` to `<SignatureCanvas ref={signatureRef} />`, the following imperative functions are exposed:
+
+### `clear(): void`
+Clears the entire canvas drawing area and resets stroke history.
+
+### `undo(): void`
+Removes the last stroke drawn on the canvas.
+
+### `isEmpty(): boolean`
+Returns `true` if no user drawings exist on the canvas.
+
+### `toDataURL(type?: string, quality?: number): string`
+Returns a Base64 encoded Data URL string representing the signature image.
+Default format: `'image/png'`.
+If `autoCrop={true}` was passed to the component, the returned image is auto-trimmed to fit the exact signature bounding box.
+
+### `getTrimmedCanvas(): HTMLCanvasElement`
+Returns the native `HTMLCanvasElement` containing the trimmed signature image. Useful for generating binary Blobs or converting to WebP/JPEG.
+
+---
+
+## 3. Real-world Examples
+
+### Example A: Contract Signing Form with Error Handling
+
+```tsx
+import React, { useRef, useState } from 'react';
+import { SignatureCanvas, SignatureCanvasRef } from 'jl-react-virtual-signature-canvas';
+
+export function ContractSigner() {
+  const ref = useRef<SignatureCanvasRef>(null);
+  const [signed, setSigned] = useState(false);
+
+  const handleSubmit = () => {
+    if (ref.current?.isEmpty()) {
+      alert('Please provide a signature before submitting.');
+      return;
+    }
+    const signatureData = ref.current?.toDataURL('image/png');
+    console.log('Sending signature to server:', signatureData);
+    setSigned(true);
+  };
+
+  return (
+    <div>
+      <h3>Sign Agreement</h3>
+      <div style={{ border: '2px dashed #94a3b8', borderRadius: '8px' }}>
+        <SignatureCanvas
+          ref={ref}
+          width="100%"
+          height={200}
+          strokeColor="#1e293b"
+          strokeWidth={3}
+          stabilization={true}
+          autoCrop={true}
+        />
+      </div>
+      <div style={{ marginTop: '12px', display: 'flex', gap: '8px' }}>
+        <button onClick={() => ref.current?.undo()}>Undo</button>
+        <button onClick={() => ref.current?.clear()}>Clear</button>
+        <button onClick={handleSubmit}>Submit Signature</button>
+      </div>
+      {signed && <p style={{ color: '#16a34a' }}>Signature captured successfully!</p>}
+    </div>
+  );
+}
+```
+
+### Example B: Modal Signature Capture with Custom Styling
+
+```tsx
+import React, { useRef } from 'react';
+import { SignatureCanvas, SignatureCanvasRef } from 'jl-react-virtual-signature-canvas';
+
+export function ModalSignature({ onClose, onSave }: { onClose: () => void; onSave: (img: string) => void }) {
+  const sigRef = useRef<SignatureCanvasRef>(null);
+
+  const handleDone = () => {
+    if (!sigRef.current || sigRef.current.isEmpty()) return;
+    const png = sigRef.current.toDataURL('image/png');
+    onSave(png);
+    onClose();
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl p-6 w-full max-w-lg shadow-2xl">
+        <h2 className="text-xl font-bold mb-2">E-Signature Required</h2>
+        <p className="text-sm text-slate-500 mb-4">Please draw your signature inside the canvas box below.</p>
+        
+        <div className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50 mb-4">
+          <SignatureCanvas
+            ref={sigRef}
+            width="100%"
+            height={220}
+            strokeColor="#4f46e5"
+            strokeWidth={4}
+            stabilization={true}
+            autoCrop={true}
+          />
+        </div>
+
+        <div className="flex justify-end gap-2">
+          <button onClick={() => sigRef.current?.clear()} className="px-4 py-2 text-sm text-red-600 bg-red-50 rounded-lg">Clear</button>
+          <button onClick={onClose} className="px-4 py-2 text-sm text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
+          <button onClick={handleDone} className="px-4 py-2 text-sm text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg font-semibold">Save Signature</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+```

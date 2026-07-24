@@ -45,6 +45,23 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   };
 
+  useEffect(() => {
+    document.documentElement.lang = language;
+    const titleText = language === 'es'
+      ? 'JL React Virtual Signature Canvas | Componente de Firma Digital para React y TypeScript'
+      : 'JL React Virtual Signature Canvas | Digital Signature Component for React & TypeScript';
+    document.title = titleText;
+
+    const descText = language === 'es'
+      ? 'Librería React ligera y potente para firma electrónica (React Signature Pad). Soporte táctil en móviles y tablets, estabilización de trazo, auto-recorte de márgenes y TypeScript.'
+      : 'Lightweight and powerful React library for electronic signatures (React Signature Pad). Mobile touch support, stroke stabilization, auto-cropping, and full TypeScript typing.';
+    
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', descText);
+    }
+  }, [language]);
+
   const t = language === 'es' ? es : en;
 
   return (

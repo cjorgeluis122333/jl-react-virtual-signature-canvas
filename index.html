@@ -1,13 +1,124 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>JL React Virtual Signature Canvas | Modern Signature Component for React & TypeScript</title>
+    <meta name="title" content="JL React Virtual Signature Canvas | Modern Signature Component for React & TypeScript" />
+    <meta name="description" content="Lightweight, smooth, and highly customizable React electronic signature canvas component (React Signature Pad). Native touch support, stroke stabilization, auto-cropping, undo/clear history, and full TypeScript support." />
+    <meta name="keywords" content="jl-react-virtual-signature-canvas, react signature canvas, react signature pad, react digital signature, virtual signature react, electronic signature react, react canvas drawing, typescript signature canvas, react signature component, signature canvas auto crop, react signature smoothing" />
+    <meta name="author" content="jlcpabonisquierdo" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    
+    <!-- Canonical & Alternate Links -->
+    <link rel="canonical" href="https://jl-react-virtual-signature-canvas.vercel.app/" />
+    <link rel="alternate" hreflang="es" href="https://jl-react-virtual-signature-canvas.vercel.app/?lang=es" />
+    <link rel="alternate" hreflang="en" href="https://jl-react-virtual-signature-canvas.vercel.app/?lang=en" />
+    <link rel="alternate" hreflang="x-default" href="https://jl-react-virtual-signature-canvas.vercel.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jl-react-virtual-signature-canvas.vercel.app/" />
+    <meta property="og:title" content="JL React Virtual Signature Canvas | Digital Signature Component" />
+    <meta property="og:description" content="Complete React electronic signature component. Features touch/mouse drawing, curve smoothing, auto-cropping, and full TypeScript typing. Interactive documentation & playground included." />
+    <meta property="og:image" content="https://jl-react-virtual-signature-canvas.vercel.app/og-image.png" />
+    <meta property="og:site_name" content="jl-react-virtual-signature-canvas" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://jl-react-virtual-signature-canvas.vercel.app/" />
+    <meta property="twitter:title" content="JL React Virtual Signature Canvas | Digital Signature Component" />
+    <meta property="twitter:description" content="Modern, lightweight React electronic signature component. Touch support, stroke stabilization, auto-cropping, and interactive playground." />
+    <meta property="twitter:image" content="https://jl-react-virtual-signature-canvas.vercel.app/og-image.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <!-- Structured Data (JSON-LD) for Software Application -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "jl-react-virtual-signature-canvas",
+      "alternateName": "React Virtual Signature Canvas",
+      "operatingSystem": "Web Browser",
+      "applicationCategory": "DeveloperApplication",
+      "softwareVersion": "1.0.0",
+      "license": "https://opensource.org/licenses/MIT",
+      "url": "https://jl-react-virtual-signature-canvas.vercel.app/",
+      "downloadUrl": "https://www.npmjs.com/package/jl-react-virtual-signature-canvas",
+      "codeRepository": "https://github.com/cjorgeluis122333/jl-react-virtual-signature-canvas",
+      "description": "High performance React signature canvas library for capturing digital signatures with touch support, stroke stabilization, and auto-cropping.",
+      "author": {
+        "@type": "Person",
+        "name": "jlcpabonisquierdo",
+        "url": "https://github.com/cjorgeluis122333"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <!-- Structured Data (JSON-LD) for FAQPage (Optimized for Google & AI Engines) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How to install jl-react-virtual-signature-canvas in React?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run 'npm install jl-react-virtual-signature-canvas' or 'yarn add jl-react-virtual-signature-canvas' in your React project directory."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does jl-react-virtual-signature-canvas support mobile touch screens?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, jl-react-virtual-signature-canvas has native touch event handlers (touchstart, touchmove, touchend) and mouse handlers, making it fully responsive across mobile phones, tablets, and desktop devices."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I export the signature as a transparent PNG?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the imperative ref method signatureRef.current.toDataURL('image/png'). When autoCrop={true} is passed to the component, it automatically trims whitespace margins around the signature."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to clear or undo drawing in jl-react-virtual-signature-canvas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can call signatureRef.current.clear() to erase the entire signature, signatureRef.current.undo() to remove the last drawn stroke, and signatureRef.current.isEmpty() to verify if anything has been drawn."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is jl-react-virtual-signature-canvas compatible with TypeScript and React 18 / 19?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, it is built with TypeScript, includes built-in type definitions (SignatureCanvasRef, SignatureCanvasProps), and supports React 18 and React 19."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
-  <body>
+  <body class="bg-slate-50 text-slate-900 antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#grad)" />
+  <!-- Signature Curve Line -->
+  <path d="M 20 65 Q 35 30 50 55 T 80 40" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+  <!-- Pen Tip Icon -->
+  <path d="M 68 22 L 78 32 L 40 70 L 26 74 L 30 60 Z" fill="#ffffff" />
+  <circle cx="25" cy="75" r="2.5" fill="#e0e7ff" />
+</svg>

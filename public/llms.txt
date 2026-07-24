@@ -1,0 +1,71 @@
+# jl-react-virtual-signature-canvas
+
+> High-performance, lightweight, and responsive electronic signature component for React (React Signature Pad / Canvas). Touch-friendly with curve stabilization and auto-cropping.
+
+## Package Summary
+- **npm package**: `jl-react-virtual-signature-canvas`
+- **npm URL**: https://www.npmjs.com/package/jl-react-virtual-signature-canvas
+- **Repository**: https://github.com/cjorgeluis122333/jl-react-virtual-signature-canvas
+- **Live Documentation & Demo**: https://jl-react-virtual-signature-canvas.vercel.app/
+- **Interactive Playground**: https://jl-react-virtual-signature-canvas.vercel.app/?mode=playground
+- **License**: MIT
+- **Languages Supported**: English, Spanish (ES / EN)
+
+## Key Features
+- **Touch & Mouse Support**: Seamless native event handling (`touchstart`, `touchmove`, `mousedown`).
+- **Stroke Stabilization**: Built-in algorithm to smooth curve drawing for realistic digital signatures.
+- **Auto-Cropping**: Trims empty margins automatically on `toDataURL('image/png')`.
+- **History Control**: Imperative methods (`clear()`, `undo()`, `isEmpty()`) accessible via React `ref`.
+- **TypeScript First**: Full typing for props (`SignatureCanvasProps`) and refs (`SignatureCanvasRef`).
+- **Zero Heavy Dependencies**: Native canvas rendering for maximum rendering speed and tiny bundle size.
+
+## Quick Start Code Snippet
+
+```tsx
+import React, { useRef } from 'react';
+import { SignatureCanvas, SignatureCanvasRef } from 'jl-react-virtual-signature-canvas';
+
+export default function App() {
+  const signatureRef = useRef<SignatureCanvasRef>(null);
+
+  const handleSave = () => {
+    if (signatureRef.current?.isEmpty()) {
+      console.log('Signature is empty');
+      return;
+    }
+    // Exports auto-cropped Base64 PNG image
+    const dataUrl = signatureRef.current?.toDataURL('image/png');
+    console.log('Signature Data URL:', dataUrl);
+  };
+
+  const handleClear = () => {
+    signatureRef.current?.clear();
+  };
+
+  const handleUndo = () => {
+    signatureRef.current?.undo();
+  };
+
+  return (
+    <div>
+      <SignatureCanvas
+        ref={signatureRef}
+        width="100%"
+        height={220}
+        strokeColor="#0f172a"
+        strokeWidth={3}
+        stabilization={true}
+        autoCrop={true}
+      />
+      <div>
+        <button onClick={handleUndo}>Undo</button>
+        <button onClick={handleClear}>Clear</button>
+        <button onClick={handleSave}>Save</button>
+      </div>
+    </div>
+  );
+}
+```
+
+## Available Resources
+- Full API Reference & Comprehensive Guide: https://jl-react-virtual-signature-canvas.vercel.app/llms-full.txt

@@ -30,6 +30,28 @@ export const en = {
     copy: 'Copy',
   },
 
+  features: {
+    title: 'Key Features',
+    mobileTitle: 'Mobile Touch Support',
+    mobileDesc: 'Smooth signature capture on smartphones, tablets, and touchscreens with native touch events.',
+    smoothTitle: 'Stroke Stabilization',
+    smoothDesc: 'Smart curve smoothing algorithm for clean, natural-looking digital signatures.',
+    cropTitle: 'Intelligent Auto-Cropping',
+    cropDesc: 'Automatically trims white margins around the signature on transparent PNG export.',
+    tsTitle: 'TypeScript & React 18/19',
+    tsDesc: 'Complete native typing with SignatureCanvasRef and SignatureCanvasProps interfaces.',
+  },
+
+  faq: {
+    title: 'Frequently Asked Questions',
+    q1: 'How do I install the library in my React project?',
+    a1: 'Run npm install jl-react-virtual-signature-canvas in your terminal to add it to your project dependencies.',
+    q2: 'How do I export the signature as a transparent PNG without margins?',
+    a2: 'Pass autoCrop={true} as a prop and call signatureRef.current.toDataURL("image/png") to receive the cropped Base64 image.',
+    q3: 'How do clear and undo functions work?',
+    a3: 'Accessing the component ref allows you to call signatureRef.current.undo() to delete the last stroke or signatureRef.current.clear() to reset the canvas.',
+  },
+
   // Basic Example Section
   basic: {
     title: 'Basic Example',

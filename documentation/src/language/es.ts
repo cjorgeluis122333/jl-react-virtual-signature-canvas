@@ -30,6 +30,28 @@ export const es = {
     copy: 'Copiar',
   },
 
+  features: {
+    title: 'Ventajas Destacadas',
+    mobileTitle: 'Soporte Táctil Móvil',
+    mobileDesc: 'Captura fluida en smartphones, tablets y pantallas táctiles con eventos nativos touchstart y touchmove.',
+    smoothTitle: 'Estabilización de Trazo',
+    smoothDesc: 'Algoritmo inteligente de suavizado de curvas para firmas digitales de apariencia profesional.',
+    cropTitle: 'Auto-Recorte Inteligente',
+    cropDesc: 'Elimina automáticamente los márgenes blancos sobrantes al exportar en PNG transparente.',
+    tsTitle: 'TypeScript & React 18/19',
+    tsDesc: 'Tipado estricto con interfaces SignatureCanvasRef y SignatureCanvasProps para autocompletado.',
+  },
+
+  faq: {
+    title: 'Preguntas Frecuentes',
+    q1: '¿Cómo instalar la librería en mi proyecto de React?',
+    a1: 'Ejecuta npm install jl-react-virtual-signature-canvas en tu terminal para añadirla a las dependencias de tu proyecto.',
+    q2: '¿Cómo exportar la firma en formato PNG transparente sin márgenes?',
+    a2: 'Usa la propiedad autoCrop={true} y llama a signatureRef.current.toDataURL("image/png") para obtener la imagen recortada en Base64.',
+    q3: '¿Cómo funcionan las funciones de deshacer y limpiar?',
+    a3: 'Mediante la referencia del componente puedes ejecutar signatureRef.current.undo() para revertir el último trazo o signatureRef.current.clear() para limpiar todo el canvas.',
+  },
+
   // Basic Example Section
   basic: {
     title: 'Ejemplo Básico',

@@ -1,0 +1,36 @@
+# Robots.txt for jl-react-virtual-signature-canvas
+# Allow all search engines & AI crawlers to discover & index documentation
+
+User-agent: *
+Allow: /
+
+# Explicit AI Crawlers (Search & LLM Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemap Location
+Sitemap: https://jl-react-virtual-signature-canvas.vercel.app/sitemap.xml
