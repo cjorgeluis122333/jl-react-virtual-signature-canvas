@@ -96,17 +96,6 @@ function DocumentationAppContent() {
           </div>
         </div>
 
-        {/* Playground Featured Button */}
-        <div className="p-4 border-b border-slate-100">
-          <button
-            onClick={handleGoToPlayground}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold text-xs shadow-md shadow-indigo-100 hover:shadow-indigo-200 transition-all active:scale-[0.98]"
-          >
-            <Sparkles className="w-4 h-4 text-indigo-200 animate-pulse" />
-            <span>{t.nav.playgroundBtn}</span>
-          </button>
-        </div>
-
         {/* Navigation Groups */}
         <nav className="flex-1 p-5 space-y-6 overflow-y-auto">
           {navGroups.map((group, groupIdx) => (
@@ -142,6 +131,17 @@ function DocumentationAppContent() {
             </div>
           ))}
         </nav>
+
+        {/* Playground Featured Button at Bottom */}
+        <div className="p-4 border-t border-slate-100 bg-slate-50/30">
+          <button
+            onClick={handleGoToPlayground}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold text-xs shadow-md shadow-indigo-100 hover:shadow-indigo-200 transition-all active:scale-[0.98]"
+          >
+            <Sparkles className="w-4 h-4 text-indigo-200 animate-pulse" />
+            <span>{t.nav.playgroundBtn}</span>
+          </button>
+        </div>
 
         {/* Language switcher footer for Desktop */}
         <div className="p-4 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between">
@@ -220,20 +220,6 @@ function DocumentationAppContent() {
               </div>
             </div>
 
-            {/* Mobile Playground Button */}
-            <div className="p-4 border-b border-slate-100">
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  handleGoToPlayground();
-                }}
-                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold text-xs shadow-md shadow-indigo-100"
-              >
-                <Sparkles className="w-4 h-4 text-indigo-200" />
-                <span>{t.nav.playgroundBtn}</span>
-              </button>
-            </div>
-
             {/* Mobile Navigation Groups */}
             <nav className="flex-1 p-5 space-y-6 overflow-y-auto">
               {navGroups.map((group, groupIdx) => (
@@ -269,6 +255,20 @@ function DocumentationAppContent() {
                 </div>
               ))}
             </nav>
+
+            {/* Mobile Playground Button at Bottom */}
+            <div className="p-4 border-t border-slate-100 bg-slate-50/30">
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  handleGoToPlayground();
+                }}
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold text-xs shadow-md shadow-indigo-100"
+              >
+                <Sparkles className="w-4 h-4 text-indigo-200" />
+                <span>{t.nav.playgroundBtn}</span>
+              </button>
+            </div>
 
             {/* Language switcher footer for Mobile */}
             <div className="p-4 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between">

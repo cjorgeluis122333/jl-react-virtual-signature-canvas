@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Terminal, Copy, Check, Sparkles, ExternalLink } from 'lucide-react';
+import { Terminal, Copy, Check, ExternalLink } from 'lucide-react';
 import { ParticleBackground } from 'jl-particle-interactive';
 import { useLanguage } from '../../language/LanguageContext';
 
@@ -46,20 +46,9 @@ export default function GetStarted() {
         <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
           {t.getStarted.title}
         </h1>
-        <p className="text-base text-slate-600 max-w-md mx-auto leading-relaxed mb-6">
+        <p className="text-base text-slate-600 max-w-md mx-auto leading-relaxed">
           {t.getStarted.subtitle}
         </p>
-
-        <button
-          onClick={() => {
-            window.history.pushState({}, '', '?mode=playground');
-            window.dispatchEvent(new Event('popstate'));
-          }}
-          className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-bold text-sm shadow-xl shadow-indigo-200 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-        >
-          <Sparkles className="w-5 h-5 text-indigo-200 animate-pulse" />
-          <span>{t.nav?.playgroundBtn || 'Probar Playground 🚀'}</span>
-        </button>
       </div>
 
       {/* Installation card (Pure Glassmorphism style over light background) */}
