@@ -1,0 +1,8 @@
+{
+  "name": "Generador de Firma Virtual",
+  "description": "Una aplicación web que permite dibujar una firma con el mouse o táctil y exportarla como imagen con fondo transparente.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

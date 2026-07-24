@@ -1,0 +1,54 @@
+{
+  "name": "jl-react-virtual-signature-canvas",
+  "version": "1.0.0",
+  "description": "A lightweight, customizable and mobile-friendly React signature canvas component with stroke stabilization and auto-crop.",
+  "author": "jlcpabonisquierdo@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TU_USUARIO/jl-react-virtual-signature-canvas.git"
+  },
+  "keywords": [
+    "jl",
+    "jl-react",
+    "jl-signature",
+    "jl-react-virtual-signature-canvas",
+    "jl-react-virtual-signature-canva",
+    "react",
+    "signature",
+    "canvas",
+    "signature-pad",
+    "react-signature",
+    "react-signature-pad",
+    "react-signature-canvas",
+    "draw",
+    "electronic-signature",
+    "e-signature",
+    "firma",
+    "firma-electronica"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "typescript": "^5.0.0"
+  }
+}
